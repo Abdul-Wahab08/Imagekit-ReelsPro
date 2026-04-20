@@ -56,7 +56,6 @@ function page() {
 
             form.setValue("description", result.Data)
         } catch (error) {
-            console.log("Something went wrong while ")
             form.setValue("description", "")
         } finally {
             setIsSuggestDesLoading(false)
@@ -79,7 +78,6 @@ function page() {
             const { signature, expire, token, publicKey } = data
             return { signature, expire, token, publicKey }
         } catch (error) {
-            console.error("Authentication error:", error);
             throw new Error("Authentication request failed");
         }
     }
@@ -168,7 +166,7 @@ function page() {
             toast.success(result.message)
             form.reset()
         } catch (error) {
-            console.log(error)
+           throw error
         }
     }
 

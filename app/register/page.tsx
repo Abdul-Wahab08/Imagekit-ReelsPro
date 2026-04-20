@@ -46,7 +46,6 @@ function page() {
             router.replace("/login")
 
         } catch (error) {
-            console.log("Registration Fails", error)
             toast.error("Registration Fails")
         } finally {
             setLoading(false)
@@ -123,7 +122,7 @@ function page() {
                     </>
                         : <p>Submit</p>}
                 </Button>
-                <div className="flex justify-center items-center gap-2 text-gray-100">
+                <div className="flex justify-center items-center gap-2 text-gray-400">
                     Already have an account?
                     <Link href={"/login"} className="hover:underline transition duration-75">Login</Link>
                 </div>

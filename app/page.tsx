@@ -23,7 +23,7 @@ export default function Home() {
         if (!response.ok) {
           toast.error(data.message)
         }
-
+        
         setReels(data.reels)
 
       } catch (error) {

@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { loginSchema } from "@/schemas/loginSchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2 } from "lucide-react"
-import { signIn, useSession } from "next-auth/react"
+import { signIn } from "next-auth/react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -17,7 +17,6 @@ function page() {
   const [isLoading, setIsLoading] = useState(false)
 
   const router = useRouter()
-  const { data: session, status } = useSession()
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -45,7 +44,6 @@ function page() {
       }
 
     } catch (error) {
-      console.log("Login Failed ", error)
       toast.error("Login Failed")
     } finally {
       setIsLoading(false)
@@ -106,11 +104,10 @@ function page() {
           </>
             : <p>Submit</p>}
         </Button>
-        <div className="flex justify-center items-center gap-2 text-gray-100">
+        <div className="flex justify-center items-center gap-2 text-gray-400">
           Doesn't have an account?
           <Link href={"/register"} className="hover:underline transition duration-75">Register</Link>
         </div>
-        {status === "authenticated" && <> Logged in as {session.user.name}</>}
       </div>
     </div>
   )

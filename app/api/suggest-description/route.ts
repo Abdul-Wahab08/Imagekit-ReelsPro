@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     });
 
     const req = await request.json()
-    const prompt = `Give a short description of about 8 to 12 words on ${req}`
+    const prompt = `Give a single short description of about 8 to 12 words on ${req}`
 
     const response = await ai.models.generateContent({
         model: "gemini-2.5-flash",

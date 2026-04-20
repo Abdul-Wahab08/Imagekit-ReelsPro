@@ -1,15 +1,6 @@
 "use client"
-import { signIn, signOut, useSession } from "next-auth/react"
+import {  signOut, useSession } from "next-auth/react"
 import { Button } from "./ui/button"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
 import Link from "next/link"
 import { HomeIcon, User2Icon } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
@@ -33,6 +24,7 @@ function Navbar() {
       document.removeEventListener("click", handleClick)
     }
   }, [])
+  
   return (
     <nav className="w-full h-14 bg-slate-800 text-gray-400 flex justify-between items-center px-8 py-4">
       <div>
