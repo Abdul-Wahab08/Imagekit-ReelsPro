@@ -60,33 +60,37 @@ export default function Home() {
             </div>
           ) :
             (
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-                {loading && <Loader2 className="h-4 w-4 animate-spin " />}
-                {reels.map((reel: videoInterface) => <div
-                  key={reel._id?.toString()}
-                  className="group relative overflow-hidden rounded-2xl bg-zinc-900 shadow-xl ring-1 ring-white/5 transition-all duration-300 hover:scale-[1.03] hover:shadow-rose-900/30 hover:shadow-2xl hover:ring-rose-500/30">
-                  <Video
-                   src={`${reel.videoUrl}?tr=w-${reel.transformation?.width ?? 1080},h-${reel.transformation?.height ?? 1920},q-${reel.transformation?.quality ?? 80}`}
-                    controls
-                    preload="none"
-                    poster={buildSrc({
-                      urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT!,
-                      src: reel.thumbnail || "https://ik.imagekit.io/tr0l4eqrr/NoThumbnail.png"
-                    })}
-                    height={200}
-                    width={200}
-                    className="aspect-9/16 w-full object-cover"
-                  />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              loading
+                ?
+                <Loader2 className="w-10 h-10 text-center animate-spin" />
+                :
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+                  {loading && <Loader2 className="h-4 w-4 animate-spin " />}
+                  {reels.map((reel: videoInterface) => <div
+                    key={reel._id?.toString()}
+                    className="group relative overflow-hidden rounded-2xl bg-zinc-900 shadow-xl ring-1 ring-white/5 transition-all duration-300 hover:scale-[1.03] hover:shadow-rose-900/30 hover:shadow-2xl hover:ring-rose-500/30">
+                    <Video
+                      src={`${reel.videoUrl}?tr=w-${reel.transformation?.width ?? 1080},h-${reel.transformation?.height ?? 1920},q-${reel.transformation?.quality ?? 80}`}
+                      controls
+                      preload="none"
+                      poster={buildSrc({
+                        urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT!,
+                        src: reel.thumbnail || "https://ik.imagekit.io/tr0l4eqrr/NoThumbnail.png"
+                      })}
+                      height={200}
+                      width={200}
+                      className="aspect-9/16 w-full object-cover"
+                    />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                  <div className="absolute right-2 top-2 rounded-full bg-black/50 p-1.5 backdrop-blur-sm opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
+                    <div className="absolute right-2 top-2 rounded-full bg-black/50 p-1.5 backdrop-blur-sm opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
 
-                </div>)}
-              </div>
+                  </div>)}
+                </div>
             )}
         </main>
       </div>
